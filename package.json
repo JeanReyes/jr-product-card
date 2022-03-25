@@ -38,7 +38,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "jr-product-card",
+  "name": "jnra-product-card",
   "author": "JeanReyes",
   "module": "dist/jr-product-card.esm.js",
   "size-limit": [
