@@ -8,7 +8,6 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var reactRouterDom = require('react-router-dom');
 var axios = _interopDefault(require('axios'));
-var fileSaver = require('file-saver');
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
   try {
@@ -1415,37 +1414,6 @@ var Message = function Message(_ref) {
     var files = _ref2.files;
 
     var download = function download(file) {
-      var contentType = file.contentType,
-          content = file.content,
-          name = file.name;
-      var base64 = "data:" + contentType + ";base64," + content;
-      fetch(base64).then( /*#__PURE__*/function () {
-        var _ref3 = _asyncToGenerator( /*#__PURE__*/runtime_1.mark(function _callee(data) {
-          return runtime_1.wrap(function _callee$(_context) {
-            while (1) {
-              switch (_context.prev = _context.next) {
-                case 0:
-                  _context.t0 = fileSaver.saveAs;
-                  _context.next = 3;
-                  return data.blob();
-
-                case 3:
-                  _context.t1 = _context.sent;
-                  _context.t2 = name;
-                  return _context.abrupt("return", (0, _context.t0)(_context.t1, _context.t2));
-
-                case 6:
-                case "end":
-                  return _context.stop();
-              }
-            }
-          }, _callee);
-        }));
-
-        return function (_x) {
-          return _ref3.apply(this, arguments);
-        };
-      }());
     };
 
     var nameFile = function nameFile(name) {
@@ -1471,7 +1439,7 @@ var Message = function Message(_ref) {
           cursor: 'pointer'
         },
         onClick: function onClick() {
-          return download(file);
+          return download();
         }
       })));
     }));

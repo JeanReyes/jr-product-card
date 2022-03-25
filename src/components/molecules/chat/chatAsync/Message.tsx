@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { saveAs } from 'file-saver';
+// import { saveAs } from 'file-saver';
 import { Attachment, Message as MessageInterface} from '../../../../interfaces';
 import { chatContext } from '../../../../tenants/chatContext'
 import { DateChat } from '../../../../utils/date';
@@ -24,7 +24,7 @@ export const Message = ({ msg }: {msg: MessageInterface} ) => {
 		const download = (file: Attachment) => {
 			const { contentType, content, name } = file;
 			const base64 = `data:${contentType};base64,${content}`;
-			fetch(base64).then(async data => saveAs(await data.blob(), name ));
+			// fetch(base64).then(async data => saveAs(await data.blob(), name ));
 		};
 
 		const nameFile = (name:string): string => {
