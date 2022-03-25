@@ -155,5 +155,145 @@ var ProductButtons = function ProductButtons(_ref) {
   }, " + "));
 };
 
-export { ProductButtons, ProductCard, ProductImage, ProductTitle };
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+function _toPrimitive(input, hint) {
+  if (typeof input !== "object" || input === null) return input;
+  var prim = input[Symbol.toPrimitive];
+
+  if (prim !== undefined) {
+    var res = prim.call(input, hint || "default");
+    if (typeof res !== "object") return res;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+
+  return (hint === "string" ? String : Number)(input);
+}
+
+function _toPropertyKey(arg) {
+  var key = _toPrimitive(arg, "string");
+
+  return typeof key === "symbol" ? key : String(key);
+}
+
+var product1 = {
+  id: '1',
+  title: 'Coffee Mug - Mug',
+  img: './coffee-mug.png'
+};
+var product2 = {
+  id: '2',
+  title: 'Coffee Mug - 2',
+  img: './coffee-mug2.png'
+};
+var products = [product1, product2];
+var ShoppingPage = function ShoppingPage() {
+  var _useState = useState({}),
+      shoppingCart = _useState[0],
+      setShoppingCart = _useState[1];
+
+  var onProductCountChange = function onProductCountChange(_ref) {
+    var count = _ref.count,
+        product = _ref.product;
+    setShoppingCart(function (oldValue) {
+      var _extends2;
+
+      /**
+       * TRUCO: desestructuro el oldvalue y extraigo el valor que queda en 0, y el resto es lo que se mantiene,
+       */
+      if (count === 0) {
+        var _product$id = product.id,
+            resto = _objectWithoutPropertiesLoose(oldValue, [_product$id].map(_toPropertyKey));
+
+        return _extends({}, resto);
+      }
+      return _extends({}, oldValue, (_extends2 = {}, _extends2[product.id] = _extends({}, product, {
+        count: count
+      }), _extends2));
+    });
+  };
+
+  return React.createElement("div", null, React.createElement("h1", null, "ShoppingPage"), React.createElement("hr", null), React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap'
+    }
+  }, products.map(function (product) {
+    var _shoppingCart$product;
+
+    return React.createElement(ProductCard, {
+      key: product.id,
+      product: product,
+      className: "bg-dark text-white",
+      values: ((_shoppingCart$product = shoppingCart[product.id]) == null ? void 0 : _shoppingCart$product.count) || 0,
+      onChange: function onChange(evento) {
+        return onProductCountChange(evento);
+      }
+    }, React.createElement(ProductImage, {
+      className: "custom-image"
+    }), React.createElement(ProductTitle, {
+      className: "text-white"
+    }), React.createElement(ProductButtons, {
+      className: "custom-buttons"
+    }));
+  }), React.createElement("div", {
+    className: "shopping-cart"
+  }, Object.entries(shoppingCart).map(function (_ref2) {
+    var key = _ref2[0],
+        productInCart = _ref2[1];
+    return React.createElement(ProductCard, {
+      key: key,
+      product: productInCart,
+      className: "bg-dark text-white",
+      styles: {
+        width: '100px'
+      },
+      values: productInCart.count,
+      onChange: function onChange(evento) {
+        return onProductCountChange(evento);
+      }
+    }, React.createElement(ProductCard.Image, {
+      className: "custom-image"
+    }), React.createElement(ProductCard.Title, {
+      title: 'hola mundo',
+      className: "text-white"
+    }), React.createElement(ProductCard.Buttons, {
+      className: "custom-buttons"
+    }));
+  }))));
+};
+
+export { ProductButtons, ProductCard, ProductImage, ProductTitle, ShoppingPage };
 //# sourceMappingURL=jnra-product-card.esm.js.map

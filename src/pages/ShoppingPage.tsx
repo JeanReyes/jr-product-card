@@ -2,7 +2,6 @@ import React, { useState , ReactElement} from 'react';
 import { ProductCard } from './ProductCard';
 import { ProductImage, ProductTitle, ProductButtons } from '../components/index';
 import { Product } from '../interfaces/interfaces';
-import '../styles/custom-styles.css';
 
 const product1 = {
     id: '1',
