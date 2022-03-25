@@ -4,9 +4,9 @@ import { useGet } from '../../../../hook/axios/Get';
 import { chatContext } from '../../../../tenants/chatContext';
 import { AsyncProps, Message } from '../../../../interfaces';
 
-export const ChatAsync = ({ children, caseNumber }: AsyncProps) => {
+export const ChatAsync = ({ children, caseNumber, role }: AsyncProps) => {
     
-    const { role, number_case } = useParams();
+    const { number_case } = useParams();
     caseNumber = caseNumber ? caseNumber : number_case;
     const URL = `http://localhost:8000/v1/facl/chats/${caseNumber}/messages`;
     const [ msg, setMsg ] = useState({} as Message);

@@ -5,24 +5,16 @@ import { ChatForm } from './chatAsync/ChatForm'
 import { ChatMessages } from './chatAsync/ChatMessages'
 import { ExternalProps } from '../../../interfaces'
 
-export const Chat = ({ caseNumber }: ExternalProps) => {
+export const Chat = ({ caseNumber, role }: ExternalProps) => {
 	 
 	const { sync } = useParams()
 	
 	return (
-		<ChatAsync caseNumber={caseNumber}>
+		<ChatAsync caseNumber={caseNumber} role={role}>
 			<div className="card">
 				<div className="container_header">
-					<div className="container_title_video_call">
-						{
-							sync !== 'sync' ?
-								<p style={{ textAlign:'left' }}> Chat Síncrono</p>	
-							: <>		
-								<p style={{ textAlign:'left' }}> Chat Asíncrono </p>
-								<div>		
-								</div>
-							</>
-						}
+					<div className="container_title_video_call">	
+						<p style={{ textAlign:'left' }}> Chat Asíncrono </p>
 					</div>
 				</div>
 				<div>

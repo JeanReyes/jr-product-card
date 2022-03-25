@@ -892,10 +892,10 @@ var formContext = /*#__PURE__*/React.createContext({});
 
 var ChatAsync = function ChatAsync(_ref) {
   var children = _ref.children,
-      caseNumber = _ref.caseNumber;
+      caseNumber = _ref.caseNumber,
+      role = _ref.role;
 
   var _useParams = reactRouterDom.useParams(),
-      role = _useParams.role,
       number_case = _useParams.number_case;
 
   caseNumber = caseNumber ? caseNumber : number_case;
@@ -1543,28 +1543,25 @@ var ChatMessages = function ChatMessages() {
 };
 
 var Chat = function Chat(_ref) {
-  var caseNumber = _ref.caseNumber;
+  var caseNumber = _ref.caseNumber,
+      role = _ref.role;
 
-  var _useParams = reactRouterDom.useParams(),
-      sync = _useParams.sync;
+  var _useParams = reactRouterDom.useParams();
 
   return React__default.createElement(ChatAsync, {
-    caseNumber: caseNumber
+    caseNumber: caseNumber,
+    role: role
   }, React__default.createElement("div", {
     className: "card"
   }, React__default.createElement("div", {
     className: "container_header"
   }, React__default.createElement("div", {
     className: "container_title_video_call"
-  }, sync !== 'sync' ? React__default.createElement("p", {
+  }, React__default.createElement("p", {
     style: {
       textAlign: 'left'
     }
-  }, " Chat S\xEDncrono") : React__default.createElement(React__default.Fragment, null, React__default.createElement("p", {
-    style: {
-      textAlign: 'left'
-    }
-  }, " Chat As\xEDncrono "), React__default.createElement("div", null)))), React__default.createElement("div", null, React__default.createElement(ChatMessages, null), React__default.createElement(ChatForm, null))));
+  }, " Chat As\xEDncrono "))), React__default.createElement("div", null, React__default.createElement(ChatMessages, null), React__default.createElement(ChatForm, null))));
 };
 
 exports.Chat = Chat;
