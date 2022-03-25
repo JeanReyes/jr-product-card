@@ -1,4 +1,11 @@
-import React, { useContext, useState, useEffect, createContext } from 'react';
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var React = require('react');
+var React__default = _interopDefault(React);
 
 function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};
@@ -38,7 +45,7 @@ var ProductImage = function ProductImage(_ref) {
       img$1 = _ref$img === void 0 ? '' : _ref$img,
       className = _ref.className;
 
-  var _useContext = useContext(productContext),
+  var _useContext = React.useContext(productContext),
       product = _useContext.product;
 
   var showImage;
@@ -51,7 +58,7 @@ var ProductImage = function ProductImage(_ref) {
     showImage = img;
   }
 
-  return React.createElement("img", {
+  return React__default.createElement("img", {
     className: style.productImg + " " + className,
     src: showImage,
     alt: "Product img"
@@ -62,10 +69,10 @@ var ProductTitle = function ProductTitle(_ref) {
   var title = _ref.title,
       className = _ref.className;
 
-  var _useContext = useContext(productContext),
+  var _useContext = React.useContext(productContext),
       product = _useContext.product;
 
-  return React.createElement("span", {
+  return React__default.createElement("span", {
     className: style.productDescription + " " + className
   }, " ", title ? title : product.title, " ");
 };
@@ -76,7 +83,7 @@ var useProduct = function useProduct(_ref) {
       _ref$values = _ref.values,
       values = _ref$values === void 0 ? 0 : _ref$values;
 
-  var _useState = useState(values),
+  var _useState = React.useState(values),
       counter = _useState[0],
       setCounter = _useState[1];
 
@@ -89,7 +96,7 @@ var useProduct = function useProduct(_ref) {
     });
   };
 
-  useEffect(function () {
+  React.useEffect(function () {
     setCounter(values);
   }, [values]);
   return {
@@ -98,7 +105,7 @@ var useProduct = function useProduct(_ref) {
   };
 };
 
-var productContext = /*#__PURE__*/createContext({});
+var productContext = /*#__PURE__*/React.createContext({});
 var Provider = productContext.Provider;
 var ProductCard = function ProductCard(_ref) {
   var children = _ref.children,
@@ -116,13 +123,13 @@ var ProductCard = function ProductCard(_ref) {
       counter = _useProduct.counter,
       increaseBy = _useProduct.increaseBy;
 
-  return React.createElement(Provider, {
+  return React__default.createElement(Provider, {
     value: {
       product: product,
       counter: counter,
       increaseBy: increaseBy
     }
-  }, React.createElement("div", {
+  }, React__default.createElement("div", {
     className: style.productCard + " " + className,
     style: styles
   }, children));
@@ -134,20 +141,20 @@ ProductCard.Buttons = ProductButtons;
 var ProductButtons = function ProductButtons(_ref) {
   var className = _ref.className;
 
-  var _useContext = useContext(productContext),
+  var _useContext = React.useContext(productContext),
       counter = _useContext.counter,
       increaseBy = _useContext.increaseBy;
 
-  return React.createElement("div", {
+  return React__default.createElement("div", {
     className: style.buttonsContainer + " " + className
-  }, React.createElement("button", {
+  }, React__default.createElement("button", {
     className: style.buttonMinus,
     onClick: function onClick() {
       return increaseBy(-1);
     }
-  }, " - "), React.createElement("div", {
+  }, " - "), React__default.createElement("div", {
     className: style.countLabel
-  }, " ", counter, " "), React.createElement("button", {
+  }, " ", counter, " "), React__default.createElement("button", {
     className: style.buttonAdd,
     onClick: function onClick() {
       return increaseBy(+1);
@@ -155,5 +162,8 @@ var ProductButtons = function ProductButtons(_ref) {
   }, " + "));
 };
 
-export { ProductButtons, ProductCard, ProductImage, ProductTitle };
-//# sourceMappingURL=jr-product-card.esm.js.map
+exports.ProductButtons = ProductButtons;
+exports.ProductCard = ProductCard;
+exports.ProductImage = ProductImage;
+exports.ProductTitle = ProductTitle;
+//# sourceMappingURL=jnra-product-card.cjs.development.js.map
