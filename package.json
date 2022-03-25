@@ -54,6 +54,7 @@
   "devDependencies": {
     "@rollup/plugin-image": "^2.1.1",
     "@size-limit/preset-small-lib": "^7.0.8",
+    "@types/file-saver": "^2.0.5",
     "@types/react": "^17.0.43",
     "@types/react-dom": "^17.0.14",
     "husky": "^7.0.4",
@@ -69,10 +70,14 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@types/react-test-renderer": "^17.0.1",
+    "axios": "^0.26.1",
     "babel-jest": "^27.5.1",
+    "file-saver": "^2.0.5",
     "jest": "^27.5.1",
+    "react-router-dom": "^6.2.2",
     "react-test-renderer": "^17.0.2",
-    "rollup-plugin-postcss": "^4.0.1"
+    "rollup-plugin-postcss": "^4.0.1",
+    "socket.io-client": "^4.4.1"
   },
   "keywords": [
     "product",
@@ -80,9 +85,9 @@
     "jean",
     "reyes"
   ],
-  "jest":{
-      "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "identity-obj-proxy", 
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "identity-obj-proxy",
       "\\.(css|less|scss|sass)$": "identity-obj-proxy"
     }
   }

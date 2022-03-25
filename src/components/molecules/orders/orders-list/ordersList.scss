@@ -1,0 +1,66 @@
+.card-title-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding-left: 0px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.order-date {
+  font-size: 0.8rem;
+}
+
+.product-img {
+  height: 75px;
+}
+
+.order-card__info {
+    margin: 0;
+}
+.card-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-card-number {
+  font-size: 14px;
+  font-weight: 400;
+  color: #4a4a4a;
+  text-align: left;
+  //   padding-bottom: 10px;
+  margin: 0;
+}
+
+.order-card-deliveryMethod {
+  font-size: 16px;
+  font-weight: 700;
+  color: #4a4a4a;
+  text-align: left;
+  padding-bottom: 10px;
+  margin: 0;
+}
+
+.order-card-deliveryStatus {
+  font-size: 14px;
+  font-weight: 400;
+  color: #4a4a4a;
+  text-align: left;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  margin: 0;
+}
+
+.order-card-status {
+  display: flex;
+}
+.order-card--actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

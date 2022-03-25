@@ -1,0 +1,23 @@
+.case-card__detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.case-card-number {
+  font-size: 14px;
+  font-weight: 400;
+  color: #4a4a4a;
+  padding-top: 10px;
+
+  text-align: left;
+  margin: 0;
+}
+
+.case-card-status {
+  font-size: 14px;
+  font-weight: 400;
+  color: #4a4a4a;
+  text-align: left;
+  padding-top: 10px;
+  margin: 0;
+}
