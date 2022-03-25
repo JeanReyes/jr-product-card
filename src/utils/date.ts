@@ -57,31 +57,31 @@ export class DateChat {
         }
     }
 
-    private isTime(): any {
-        if (this.date) {
-            if (this.now.getDate() === this.date.getDate()) {
-                return `Hoy`
-            } else {
-                // if (this.)
-                if ((this.now.getDate() - this.date.getDate()) === 1) {
-                    return `AYER`               
-                } else if (this.now.getDate() - this.date.getDate() === 2){
-                    // hacer validaciones para 1 semana las anteriores enviar la fecha
-                    return `${this.days[this.date.getDay()]}`            
-                } else if (this.now.getDate() - this.date.getDate() === 3){
-                    return `${this.days[this.date.getDay()]}`
-                } else if (this.now.getDate() - this.date.getDate() === 4){
-                    return `${this.days[this.date.getDay()]}`
-                } else if (this.now.getDate() - this.date.getDate() === 5){
-                    return `${this.days[this.date.getDay()]}`
-                } else if (this.now.getDate() - this.date.getDate() === 6){
-                    return `${this.days[this.date.getDay()]}`
-                } else {
-                    return `LA FECHA`
-                }
-            }      
-        }
-    }
+    // private isTime(): any {
+    //     if (this.date) {
+    //         if (this.now.getDate() === this.date.getDate()) {
+    //             return `Hoy`
+    //         } else {
+    //             // if (this.)
+    //             if ((this.now.getDate() - this.date.getDate()) === 1) {
+    //                 return `AYER`               
+    //             } else if (this.now.getDate() - this.date.getDate() === 2){
+    //                 // hacer validaciones para 1 semana las anteriores enviar la fecha
+    //                 return `${this.days[this.date.getDay()]}`            
+    //             } else if (this.now.getDate() - this.date.getDate() === 3){
+    //                 return `${this.days[this.date.getDay()]}`
+    //             } else if (this.now.getDate() - this.date.getDate() === 4){
+    //                 return `${this.days[this.date.getDay()]}`
+    //             } else if (this.now.getDate() - this.date.getDate() === 5){
+    //                 return `${this.days[this.date.getDay()]}`
+    //             } else if (this.now.getDate() - this.date.getDate() === 6){
+    //                 return `${this.days[this.date.getDay()]}`
+    //             } else {
+    //                 return `LA FECHA`
+    //             }
+    //         }      
+    //     }
+    // }
 
     private addMinutes (minutes: number): any {
         if (minutes >= 0 && minutes < 9) {

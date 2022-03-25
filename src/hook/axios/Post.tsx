@@ -41,7 +41,7 @@ export const usePost = (url: string) => {
             seData(response.data);
             return response.data;
 
-        } catch (e: any) {
+        } catch (e) {
             setError(e);
         } finally {
             setLoading(false);
