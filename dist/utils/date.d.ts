@@ -1,10 +1,10 @@
 export declare class DateChat {
-    date?: Date;
-    previusDate?: Date;
+    date?: Date | undefined;
+    previusDate?: Date | undefined;
     private now;
     private readonly days;
     private readonly months;
-    constructor(date?: Date, previusDate?: Date);
+    constructor(date?: Date | undefined, previusDate?: Date | undefined);
     private formateDate;
     private messageTime;
     private addMinutes;

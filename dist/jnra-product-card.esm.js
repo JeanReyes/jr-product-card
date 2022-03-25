@@ -851,7 +851,7 @@ var useGet = function useGet(url) {
             case 10:
               _context.prev = 10;
               _context.t0 = _context["catch"](0);
-              setError(_context.t0.message);
+              setError(_context.t0);
 
             case 13:
               _context.prev = 13;

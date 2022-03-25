@@ -16,7 +16,7 @@ export const useGet = (url:string): GetData  => {
             seData(response.data.data);
             return response.data.data;
         } catch (e) { 
-            setError(e.message as any);
+            setError(e as any);
         } finally { }
     };
     

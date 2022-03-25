@@ -15,7 +15,7 @@ export const usePost = (url: string) => {
             return response.data;
 
         } catch (e) {
-            setError(e);
+            setError(e as any);
         } finally {}
     };
 
@@ -42,7 +42,7 @@ export const usePost = (url: string) => {
             return response.data;
 
         } catch (e) {
-            setError(e);
+            setError(e as any);
         } finally {
             setLoading(false);
         }
