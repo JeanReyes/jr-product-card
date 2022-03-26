@@ -1561,7 +1561,7 @@ var Chat = function Chat(_ref) {
     style: {
       textAlign: 'left'
     }
-  }, " Chat As\xEDncrono "))), React__default.createElement("div", null, React__default.createElement(ChatMessages, null), React__default.createElement(ChatForm, null))));
+  }, " Chat As\xEDncrono :).. "))), React__default.createElement("div", null, React__default.createElement(ChatMessages, null), React__default.createElement(ChatForm, null))));
 };
 
 exports.Chat = Chat;

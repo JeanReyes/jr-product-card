@@ -1,0 +1,224 @@
+.container_header {
+  padding: 10px;
+  border-bottom: 4px solid #ff6200; }
+
+.container_title_video_call {
+  display: flex;
+  justify-content: space-between; }
+
+.container_title_video_call p {
+  text-align: left;
+  font-size: 25px;
+  padding: 6px;
+  margin: 0; }
+
+.container_message {
+  display: block;
+  width: 100%;
+  padding: 0px 10px 0px 10px;
+  max-height: 500px;
+  min-height: 500px;
+  overflow-y: auto;
+  font-size: 12px; }
+
+.container_message_time {
+  display: flex;
+  justify-content: center;
+  width: 100%; }
+
+.container_message_text {
+  max-width: 50%;
+  min-width: 20%;
+  text-align: center;
+  opacity: .5; }
+
+.line_message_time {
+  border-bottom: 1px solid gray;
+  text-align: center;
+  width: 50%;
+  position: relative;
+  top: -7px;
+  opacity: .3; }
+
+.container_is_now {
+  width: 100%;
+  font-size: 20px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  z-index: 1; }
+  .container_is_now div {
+    width: 20%;
+    text-align: center;
+    font-family: Tahoma; }
+
+.message_user {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 10px; }
+
+.message_agente {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 10px; }
+
+.message_user_text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #e4ebf7;
+  padding: 10px;
+  border-radius: 15px 15px 0px 15px;
+  max-width: 400px; }
+
+.message_agente_text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 15px 15px 15px 0px;
+  max-width: 400px; }
+
+.message_date {
+  text-align: center;
+  padding: 16px 0;
+  font-size: 12px;
+  color: #999; }
+
+.container_hora_message {
+  font-size: 10px;
+  float: right;
+  font-style: oblique;
+  margin-top: 4px; }
+
+.container_form {
+  display: flex;
+  margin: 20px; }
+
+.text_area_input {
+  max-height: 200px;
+  height: 20px; }
+
+.container_form_file {
+  font-size: x-large;
+  margin-right: 10px;
+  cursor: pointer; }
+
+.container_file {
+  display: flex;
+  min-width: 380px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  background-color: #d0d0d0;
+  border-radius: 3px; }
+
+.container_download {
+  display: block;
+  width: 100%; }
+
+.container_download span {
+  font-size: 12px;
+  margin-left: 10px; }
+
+.container_download i {
+  font-size: 20px; }
+
+/*VIDEO CALL*/
+.container_video_call {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px; }
+
+@media (max-width: 600px) {
+  .message_user_text {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #e4ebf7;
+    padding: 10px;
+    border-radius: 15px 15px 0px 15px;
+    max-width: 200px; }
+  .message_agente_text {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 15px 15px 15px 0px;
+    max-width: 200px; }
+  .container_file {
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+    background-color: #d0d0d0;
+    border-radius: 3px; } }
+
+.attachment_container {
+  background: #DDDDDD;
+  width: 60%;
+  min-width: 60%;
+  height: auto;
+  margin: 10px 20px;
+  padding: 5px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between; }
+
+.remove_text_file {
+  color: #333;
+  font-weight: 500;
+  display: table-cell;
+  margin: 0; }
+
+.remove_file {
+  cursor: pointer;
+  float: right;
+  margin: 5px; }
+
+.body {
+  font-family: Lato, sans-serif; }
+
+.pannel {
+  background-color: #fff;
+  border-radius: 5px;
+  margin-bottom: 15px !important;
+  padding: 20px 40px; }
+  .pannel--shadow {
+    box-shadow: #4a4a4a 0px 0px 5px 0px; }
+
+.button {
+  background-color: #495867;
+  font-size: 19px;
+  font-weight: 400;
+  position: relative;
+  width: 220px;
+  text-align: center;
+  height: auto;
+  line-height: 22.8px;
+  min-height: 35px;
+  border-radius: 24px;
+  border: 0;
+  color: white;
+  align-self: center; }
+  .button:hover {
+    background-color: #4a4a4a; }
+
+a {
+  color: #fff; }
+
+p {
+  margin: 0; }
+
+
+/*# sourceMappingURL=/example.f69400ca.css.map */
