@@ -1,10 +1,12 @@
 import { ReactElement } from 'react';
 export interface ExternalProps {
     caseNumber?: string;
+    role?: string;
 }
 export interface AsyncProps {
     children?: ReactElement | ReactElement[] | string | boolean | null | undefined;
     caseNumber?: string;
+    role?: string;
 }
 export interface TimeMessageProps {
     msg: Message;
