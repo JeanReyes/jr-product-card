@@ -38577,6 +38577,46 @@ function _extends() {
   return _extends.apply(this, arguments);
 }
 
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+function _createForOfIteratorHelperLoose(o, allowArrayLike) {
+  var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
+  if (it) return (it = it.call(o)).next.bind(it);
+
+  if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+    if (it) o = it;
+    var i = 0;
+    return function () {
+      if (i >= o.length) return {
+        done: true
+      };
+      return {
+        done: false,
+        value: o[i++]
+      };
+    };
+  }
+
+  throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
 function createCommonjsModule(fn, module) {
   return module = {
     exports: {}
@@ -39642,6 +39682,8 @@ var ChatUploadFile = function ChatUploadFile() {
       message = _useContext.message,
       setMessage = _useContext.setMessage;
 
+  console.log(" message.attachments", message.attachments);
+
   var removeFile = function removeFile(index) {
     var array = message.attachments;
     array.splice(index, 1);
@@ -39705,15 +39747,7 @@ var ChatForm = function ChatForm() {
     }));
   };
 
-  var handleFile = function handleFile(file) {
-    var attachments = message.attachments;
-
-    if (attachments) {
-      setMessage(_extends({}, message, {
-        attachments: [].concat(attachments, file)
-      }));
-    }
-  };
+  var handleFile = function handleFile(file) {};
 
   var handleSubmit = function handleSubmit(e) {
     if (e) e.preventDefault();
@@ -40049,6 +40083,38 @@ var ChatMessages = function ChatMessages() {
   }));
 };
 
+function styleInject(css, ref) {
+  if (ref === void 0) ref = {};
+  var insertAt = ref.insertAt;
+
+  if (!css || typeof document === 'undefined') {
+    return;
+  }
+
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
+
+  if (insertAt === 'top') {
+    if (head.firstChild) {
+      head.insertBefore(style, head.firstChild);
+    } else {
+      head.appendChild(style);
+    }
+  } else {
+    head.appendChild(style);
+  }
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var css_248z = ".container_header {\n  padding: 10px;\n  border-bottom: 4px solid #ff6200; }\n\n.container_title_video_call {\n  display: flex;\n  justify-content: space-between; }\n\n.container_title_video_call p {\n  text-align: left;\n  font-size: 25px;\n  padding: 6px;\n  margin: 0; }\n\n.container_message {\n  display: block;\n  width: 100%;\n  padding: 0px 10px 0px 10px;\n  max-height: 500px;\n  min-height: 500px;\n  overflow-y: auto;\n  font-size: 12px; }\n\n.container_message_time {\n  display: flex;\n  justify-content: center;\n  width: 100%; }\n\n.container_message_text {\n  max-width: 50%;\n  min-width: 20%;\n  text-align: center;\n  opacity: .5; }\n\n.line_message_time {\n  border-bottom: 1px solid gray;\n  text-align: center;\n  width: 50%;\n  position: relative;\n  top: -7px;\n  opacity: .3; }\n\n.container_is_now {\n  width: 100%;\n  font-size: 20px;\n  position: absolute;\n  display: flex;\n  justify-content: center;\n  z-index: 1; }\n  .container_is_now div {\n    width: 20%;\n    text-align: center;\n    font-family: Tahoma; }\n\n.message_user {\n  display: flex;\n  justify-content: flex-end;\n  width: 100%;\n  overflow: hidden;\n  margin-bottom: 10px; }\n\n.message_agente {\n  display: flex;\n  justify-content: flex-start;\n  width: 100%;\n  overflow: hidden;\n  margin-bottom: 10px; }\n\n.message_user_text {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  background-color: #e4ebf7;\n  padding: 10px;\n  border-radius: 15px 15px 0px 15px;\n  max-width: 400px; }\n\n.message_agente_text {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  background-color: #f5f5f5;\n  padding: 10px;\n  border-radius: 15px 15px 15px 0px;\n  max-width: 400px; }\n\n.message_date {\n  text-align: center;\n  padding: 16px 0;\n  font-size: 12px;\n  color: #999; }\n\n.container_hora_message {\n  font-size: 10px;\n  float: right;\n  font-style: oblique;\n  margin-top: 4px; }\n\n.container_form {\n  display: flex;\n  margin: 20px; }\n\n.text_area_input {\n  max-height: 200px;\n  height: 20px; }\n\n.container_form_file {\n  font-size: x-large;\n  margin-right: 10px;\n  cursor: pointer; }\n\n.container_file {\n  display: flex;\n  min-width: 380px;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 10px;\n  padding-right: 10px;\n  margin-top: 10px;\n  background-color: #d0d0d0;\n  border-radius: 3px; }\n\n.container_download {\n  display: block;\n  width: 100%; }\n\n.container_download span {\n  font-size: 12px;\n  margin-left: 10px; }\n\n.container_download i {\n  font-size: 20px; }\n\n/*VIDEO CALL*/\n.container_video_call {\n  display: flex;\n  justify-content: space-evenly;\n  padding: 10px; }\n\n@media (max-width: 600px) {\n  .message_user_text {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    background-color: #e4ebf7;\n    padding: 10px;\n    border-radius: 15px 15px 0px 15px;\n    max-width: 200px; }\n  .message_agente_text {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    background-color: #f5f5f5;\n    padding: 10px;\n    border-radius: 15px 15px 15px 0px;\n    max-width: 200px; }\n  .container_file {\n    display: flex;\n    padding-top: 10px;\n    padding-bottom: 10px;\n    padding-left: 10px;\n    padding-right: 10px;\n    margin-top: 10px;\n    background-color: #d0d0d0;\n    border-radius: 3px; } }\n\n.attachment_container {\n  background: #DDDDDD;\n  width: 60%;\n  min-width: 60%;\n  height: auto;\n  margin: 10px 20px;\n  padding: 5px;\n  border-radius: 4px;\n  display: flex;\n  justify-content: space-between; }\n\n.remove_text_file {\n  color: #333;\n  font-weight: 500;\n  display: table-cell;\n  margin: 0; }\n\n.remove_file {\n  cursor: pointer;\n  float: right;\n  margin: 5px; }\n\n.body {\n  font-family: Lato, sans-serif; }\n\n.pannel {\n  background-color: #fff;\n  border-radius: 5px;\n  margin-bottom: 15px !important;\n  padding: 20px 40px; }\n  .pannel--shadow {\n    box-shadow: #4a4a4a 0px 0px 5px 0px; }\n\n.button {\n  background-color: #495867;\n  font-size: 19px;\n  font-weight: 400;\n  position: relative;\n  width: 220px;\n  text-align: center;\n  height: auto;\n  line-height: 22.8px;\n  min-height: 35px;\n  border-radius: 24px;\n  border: 0;\n  color: white;\n  align-self: center; }\n  .button:hover {\n    background-color: #4a4a4a; }\n\na {\n  color: #fff; }\n\np {\n  margin: 0; }\n";
+styleInject(css_248z);
+
 var Chat = function Chat(_ref) {
   var caseNumber = _ref.caseNumber,
       role = _ref.role;
@@ -40071,7 +40137,341 @@ var Chat = function Chat(_ref) {
   }, " Chat As\xEDncrono :).. "))), React__default.createElement("div", null, React__default.createElement(ChatMessages, null), React__default.createElement(ChatForm, null))));
 };
 
+var css_248z$1 = ".Portal-header {\n  background: linear-gradient(17.56deg, #ff9401 63.22%, #ff7b01 105.58%, #ff6c01 144.92%);\n  height: 70px;\n  background-position: left;\n  background-repeat: no-repeat;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  font-size: calc(10px + 2vmin);\n  color: #333; }\n\n.logo_background {\n  background: linear-gradient(272deg, #ff6200 0%, #ff861b 95.09%);\n  border-radius: 1653px 0px 0px 1653px;\n  width: 190px;\n  height: 70px;\n  text-align: left;\n  transform: rotate(180deg);\n  margin-left: 0;\n  margin-right: auto;\n  cursor: pointer; }\n\n.fala_logo {\n  transform: rotate(180deg);\n  height: 100%;\n  width: 85%;\n  padding-right: 10px;\n  padding-left: 10px; }\n";
+styleInject(css_248z$1);
+
+var goToPortal = function goToPortal() {
+  window.location.href = '/portal';
+};
+
+var Header = function Header() {
+  return React__default.createElement("header", {
+    className: "Portal-header"
+  }, React__default.createElement("div", {
+    onClick: goToPortal,
+    className: 'logo_background'
+  }, React__default.createElement("img", {
+    className: "fala_logo",
+    src: "https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt9f6f7671ced09c38/6126b34e8e16ab655b346002/hr-1-logo-desktop.svg"
+  })));
+};
+
+var css_248z$2 = "body {\n  height: 100%;\n  background-color: #f5f5f5;\n}\n\n.Orders {\n  margin: 0px;\n}\n\n.title {\n  font-size: 22px;\n  line-height: 27px;\n  font-weight: 700;\n  color: rgb(51, 51, 51);\n}\n\n.subtitle {\n  font-size: 1em;\n  color: rgb(51, 51, 51);\n  margin: 0;\n  margin-right: 10px;\n}\n\n.input-container {\n  display: flex;\n  margin-bottom: 15px;\n}\n\ninput {\n  height: 20px;\n  width: 220px;\n  border: 1px solid #888;\n  font-family: inherit;\n  line-height: inherit;\n  font-size: 1.6rem;\n  background: #fff;\n  outline: none;\n  border-radius: 4px;\n  box-sizing: content-box;\n  padding: 0 10px;\n  font-size: 16px;\n  color: #333;\n  /* text-align: center; */\n}\n\n.orders-pagination{\n  display: flex;\n  justify-content: center;\n  margin-bottom: 15px;\n}\n\n.orders-pagination p{\n  margin: 0px 5px;\n}\n\n.arrow {\n  cursor: pointer;\n}";
+styleInject(css_248z$2);
+var URL = 'http://localhost:8000/v1/facl';
+
+var getOrders =
+/*#__PURE__*/
+function () {
+  var _ref =
+  /*#__PURE__*/
+  _asyncToGenerator(
+  /*#__PURE__*/
+  runtime_1.mark(function _callee(email, page) {
+    var ordersResponse;
+    return runtime_1.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            if (page === void 0) {
+              page = 1;
+            }
+
+            _context.prev = 1;
+            _context.next = 4;
+            return axios.get(URL + "/orders/?email=" + email + "&page=" + page);
+
+          case 4:
+            ordersResponse = _context.sent;
+            return _context.abrupt("return", ordersResponse.data.data);
+
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](1);
+            console.log(_context.t0);
+            return _context.abrupt("return", null);
+
+          case 12:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[1, 8]]);
+  }));
+
+  return function getOrders(_x, _x2) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var DELIVERY_METHODS = {
+  HOME_DELIVERY: "Entregado el",
+  PICKUP_FROM_STORE: "Retiro en tienda"
+};
+var DELIVERY_STATUS = {
+  DELIVERED: "Compra entregada",
+  IN_PROCESS: "Solicitud recibida",
+  WITH_INVOICE: "Compra confirmada",
+  SHIPMENT_IN_PROCESS: "Compra en camino",
+  CANCELED: "Compra cancelada"
+};
+
+var getDeliveryMethod = function getDeliveryMethod(method) {
+  return DELIVERY_METHODS[method] || method;
+};
+
+var getDeliveryStatus = function getDeliveryStatus(status) {
+  return DELIVERY_STATUS[status] || status;
+};
+
+var css_248z$3 = ".card-title-container {\n  display: flex;\n  justify-content: space-between; }\n\n.card-title {\n  font-size: 1.2rem;\n  font-weight: 700;\n  padding-left: 0px;\n  margin: 0;\n  padding: 0;\n  border: 0; }\n\n.order-date {\n  font-size: 0.8rem; }\n\n.product-img {\n  height: 75px; }\n\n.order-card__info {\n  margin: 0; }\n\n.card-content {\n  display: flex;\n  justify-content: space-between; }\n\n.order-card-number {\n  font-size: 14px;\n  font-weight: 400;\n  color: #4a4a4a;\n  text-align: left;\n  margin: 0; }\n\n.order-card-deliveryMethod {\n  font-size: 16px;\n  font-weight: 700;\n  color: #4a4a4a;\n  text-align: left;\n  padding-bottom: 10px;\n  margin: 0; }\n\n.order-card-deliveryStatus {\n  font-size: 14px;\n  font-weight: 400;\n  color: #4a4a4a;\n  text-align: left;\n  padding-bottom: 10px;\n  padding-left: 10px;\n  margin: 0; }\n\n.order-card-status {\n  display: flex; }\n\n.order-card--actions {\n  display: flex;\n  justify-content: space-between;\n  align-items: center; }\n";
+styleInject(css_248z$3);
+
+var OrdersCard = function OrdersCard(customerOrder) {
+  var order = customerOrder.order;
+
+  var viewCase = function viewCase(sellerOrder) {
+    window.location.href = "/cases-chat/user?orderNumber=" + sellerOrder;
+  };
+
+  var formattedDate = order.createdAt.split(" ")[0];
+  return React__default.createElement(React__default.Fragment, null, React__default.createElement("div", {
+    className: "order-card"
+  }, React__default.createElement("div", {
+    className: "card-title-container"
+  }, React__default.createElement("p", {
+    className: "card-title"
+  }, "Compra online"), React__default.createElement("label", {
+    className: "order-date"
+  }, "Fecha de la compra: ", formattedDate)), React__default.createElement("div", {
+    className: "order-card__detail"
+  }, order.deliveryOrders.map(function (orderDelivery, index) {
+    var _orderDelivery$delive, _orderDelivery$delive2;
+
+    return React__default.createElement("div", {
+      key: index
+    }, React__default.createElement("hr", null), React__default.createElement("div", {
+      className: "card-content"
+    }, React__default.createElement("div", {
+      className: "order-card--product"
+    }, React__default.createElement("p", {
+      className: "order-card-number"
+    }, "Pedido N\xBA: ", orderDelivery.reservationNumber), React__default.createElement("label", {
+      className: "order-card-deliveryMethod"
+    }, getDeliveryMethod(orderDelivery.deliveryMethod), " ", orderDelivery == null ? void 0 : (_orderDelivery$delive = orderDelivery.deliveryInfo) == null ? void 0 : (_orderDelivery$delive2 = _orderDelivery$delive.deliveredDate) == null ? void 0 : _orderDelivery$delive2.split(" ")[0]), React__default.createElement("div", {
+      className: "order-card-status"
+    }, React__default.createElement("div", {
+      className: "product_container__img"
+    }, React__default.createElement("img", {
+      className: "product-img",
+      alt: "",
+      src: orderDelivery.shipments[0].orderLines[0].item.imageUrl
+    })), React__default.createElement("p", {
+      className: "order-card-deliveryStatus"
+    }, "Estado: ", getDeliveryStatus(orderDelivery.shipments[0].currentStatus)))), React__default.createElement("div", {
+      className: "order-card--actions"
+    }, React__default.createElement("button", {
+      className: "button",
+      onClick: function onClick(e) {
+        return viewCase(orderDelivery.reservationNumber);
+      }
+    }, "Abrir conversaci\xF3n"))));
+  }))));
+};
+
+var getStatusMessage = function getStatusMessage(originalStatus) {
+  var description = '';
+
+  switch (originalStatus) {
+    case 'PAYMENT_PENDING':
+      description = 'Pendiente de pago';
+      break;
+
+    case 'IN_PROCESS':
+      description = 'Reservado';
+      break;
+
+    case 'WITH_INVOICE':
+    case 'PAYMENT_CONFIRMED':
+    case 'SHIPMENT_IN_PROCESS':
+    case 'BROKEN':
+      description = 'Pedido en curso';
+      break;
+
+    case 'DELAYED':
+      description = 'Pedido en curso';
+      break;
+
+    case 'DELIVERED':
+      description = 'Pedido finalizado';
+      break;
+
+    case 'READY_TO_PICKUP':
+      description = 'Listo para retiro';
+      break;
+
+    case 'CANCELED':
+      description = 'Pedido cancelado';
+      break;
+
+    case 'EXPIRED':
+      description = 'Pedido expirado';
+      break;
+
+    default:
+      description = originalStatus;
+      break;
+  }
+
+  return description;
+};
+
+var getDeliveryStatus$1 = function getDeliveryStatus(originalStatus) {
+  switch (originalStatus) {
+    case 'PICKUP_FROM_STORE':
+      originalStatus = 'Retiro en tienda';
+      break;
+
+    case 'HOME_DELIVERY':
+      originalStatus = 'Despacho a domicilio';
+      break;
+
+    case 'DELIVERED':
+      originalStatus = 'Despacho a domicilio';
+      break;
+
+    default:
+      originalStatus = 'Sin información';
+      break;
+  }
+
+  return originalStatus;
+};
+
+var formatSellerOrder = function formatSellerOrder(sellerOrder) {
+  sellerOrder.shipments[0].currentStatus = getStatusMessage(sellerOrder.shipments[0].currentStatus);
+  sellerOrder.deliveryMethod = getDeliveryStatus$1(sellerOrder.deliveryMethod);
+};
+
+var formatOrder = function formatOrder(orderData) {
+  for (var _iterator = _createForOfIteratorHelperLoose(orderData.customerOrders), _step; !(_step = _iterator()).done;) {
+    var order = _step.value;
+
+    for (var _iterator2 = _createForOfIteratorHelperLoose(order.deliveryOrders), _step2; !(_step2 = _iterator2()).done;) {
+      var sellerOrder = _step2.value;
+      formatSellerOrder(sellerOrder);
+    }
+  }
+};
+
+var Orders = function Orders() {
+  var _useState = React.useState({}),
+      ordersData = _useState[0],
+      setOrdersData = _useState[1];
+
+  var _useState2 = React.useState(''),
+      caseEmailInput = _useState2[0],
+      setCaseEmailInput = _useState2[1];
+
+  var changePageBack = function changePageBack(paginationData, email) {
+    if (paginationData.page - 1 < 1) ;else {
+      var page = paginationData.page - 1;
+      viewOrdersByEmail(email, page);
+    }
+  };
+
+  var changePageUp = function changePageUp(paginationData, email) {
+    if (paginationData.page + 1 > paginationData.totalPages) ;else {
+      var page = paginationData.page + 1;
+      viewOrdersByEmail(email, page);
+    }
+  };
+
+  var viewOrdersByEmail =
+  /*#__PURE__*/
+  function () {
+    var _ref = _asyncToGenerator(
+    /*#__PURE__*/
+    runtime_1.mark(function _callee(email, page) {
+      var response;
+      return runtime_1.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return getOrders(email, page);
+
+            case 2:
+              response = _context.sent;
+
+              if (response) {
+                formatOrder(response);
+                setOrdersData(response);
+              }
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function viewOrdersByEmail(_x, _x2) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  return React__default.createElement("div", {
+    className: "Orders"
+  }, React__default.createElement("div", {
+    className: "Orders-body"
+  }, React__default.createElement("div", {
+    className: "orders-search pannel"
+  }, React__default.createElement("p", {
+    className: "title"
+  }, "Revisi\xF3n de casos y compras"), React__default.createElement("div", {
+    className: "input-container"
+  }, React__default.createElement("p", {
+    className: "subtitle"
+  }, "Ingrese su email:"), React__default.createElement("input", {
+    className: "search_inputs",
+    key: "email",
+    value: caseEmailInput,
+    type: "text",
+    onInput: function onInput(e) {
+      return setCaseEmailInput(e.currentTarget.value);
+    }
+  })), React__default.createElement("button", {
+    className: 'button',
+    onClick: function onClick(e) {
+      return viewOrdersByEmail(caseEmailInput);
+    }
+  }, "Ver detalle")), ordersData && ordersData.pagination && ordersData.pagination.totalPages > 1 && React__default.createElement("div", {
+    className: "orders-pagination"
+  }, React__default.createElement("div", {
+    className: "before-arrow arrow",
+    onClick: function onClick(e) {
+      return changePageBack(ordersData.pagination, caseEmailInput);
+    }
+  }, '<'), React__default.createElement("p", null, "P\xE1gina ", ordersData.pagination.page, " de ", ordersData.pagination.totalPages), React__default.createElement("div", {
+    className: "next-arrow arrow",
+    onClick: function onClick(e) {
+      return changePageUp(ordersData.pagination, caseEmailInput);
+    }
+  }, '>')), ordersData && ordersData.customerOrders && ordersData.customerOrders.map(function (customerOrder, index) {
+    return React__default.createElement("div", {
+      key: index,
+      className: 'orders-container pannel'
+    }, React__default.createElement(OrdersCard, {
+      order: customerOrder
+    }));
+  })));
+};
+
 exports.Chat = Chat;
+exports.Header = Header;
+exports.Orders = Orders;
 },{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/index.js","axios":"../node_modules/axios/index.js"}],"../dist/index.js":[function(require,module,exports) {
 'use strict';
 
@@ -40080,79 +40480,7 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./jnra-product-card.cjs.development.js');
 }
-},{"./jnra-product-card.cjs.development.js":"../dist/jnra-product-card.cjs.development.js"}],"node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"node_modules/parcel/src/builtins/bundle-url.js"}],"../src/styles/index.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel/src/builtins/css-loader.js"}],"index.tsx":[function(require,module,exports) {
+},{"./jnra-product-card.cjs.development.js":"../dist/jnra-product-card.cjs.development.js"}],"index.tsx":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -40201,8 +40529,6 @@ var ReactDOM = __importStar(require("react-dom"));
 
 var _1 = require("../.");
 
-require("../src/styles/index.scss");
-
 var App = function App() {
   return React.createElement("div", {
     className: "container"
@@ -40213,7 +40539,7 @@ var App = function App() {
 };
 
 ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
-},{"react-app-polyfill/ie11":"node_modules/react-app-polyfill/ie11.js","react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/profiling.js","../.":"../dist/index.js","../src/styles/index.scss":"../src/styles/index.scss"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react-app-polyfill/ie11":"node_modules/react-app-polyfill/ie11.js","react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/profiling.js","../.":"../dist/index.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -40241,7 +40567,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50787" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63589" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

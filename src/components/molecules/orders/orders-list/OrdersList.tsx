@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import React,{ FC, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { getDeliveryMethod, getDeliveryStatus } from "../../../../constants/deliveryMethod";
 import { getCaseByOrder } from "../../../../services/my-case/CasesService";

@@ -1,3 +1,4 @@
+import React from "react";
 import { getDeliveryMethod } from "../../../../constants/deliveryMethod";
 import { IOrderDataResponseDeliveryOrders } from "../../../../services/my-orders/IOrderDataResponse";
 import "./orderDetail.scss";

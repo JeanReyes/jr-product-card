@@ -4,19 +4,13 @@ declare module '*.css' {
 }
 
 declare module '*.scss' {
-    const content: any;
-    export default content;
-}
-  
-declare module '*.less' {
-    const content: any;
-    export default content;
-}
-
-declare module '*.sass' {
-    const content: any;
-    export default content;
-}
+    const css: { [key: string]: string };
+    export default css;
+  }
+  declare module '*.sass' {
+    const css: { [key: string]: string };
+    export default css;
+  }
 
 declare module "*.jpg" {
     const value: any;

@@ -30,11 +30,16 @@ export const ChatForm = () => {
 
     const handleFile = (file: FileList): void => { // se ejecuta cada vez que se agrega un file
         const { attachments } = message;
+
+        
+        // let array: File[] | FileList = [ ...attachments as File[], ...file]
+        // console.log(array);
+        
         if (attachments) {
-            setMessage({
-                ...message,
-                attachments: [...attachments as any, ...file as any] 
-            });
+            // setMessage({
+            //     ...message,
+            //     attachments: array   
+            // });
         }
     };
 

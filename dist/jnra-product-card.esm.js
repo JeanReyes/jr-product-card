@@ -56,6 +56,44 @@ function _extends() {
   return _extends.apply(this, arguments);
 }
 
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+  return arr2;
+}
+
+function _createForOfIteratorHelperLoose(o, allowArrayLike) {
+  var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
+  if (it) return (it = it.call(o)).next.bind(it);
+
+  if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+    if (it) o = it;
+    var i = 0;
+    return function () {
+      if (i >= o.length) return {
+        done: true
+      };
+      return {
+        done: false,
+        value: o[i++]
+      };
+    };
+  }
+
+  throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
@@ -1129,6 +1167,8 @@ var ChatUploadFile = function ChatUploadFile() {
       message = _useContext.message,
       setMessage = _useContext.setMessage;
 
+  console.log(" message.attachments", message.attachments);
+
   var removeFile = function removeFile(index) {
     var array = message.attachments;
     array.splice(index, 1);
@@ -1193,13 +1233,6 @@ var ChatForm = function ChatForm() {
   };
 
   var handleFile = function handleFile(file) {
-    var attachments = message.attachments;
-
-    if (attachments) {
-      setMessage(_extends({}, message, {
-        attachments: [].concat(attachments, file)
-      }));
-    }
   };
 
   var handleSubmit = function handleSubmit(e) {
@@ -1562,7 +1595,7 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z = ".index_container_header__4BcWD {\n  padding: 10px;\n  border-bottom: 4px solid #ff6200; }\n\n.index_container_title_video_call__s9ly9 {\n  display: flex;\n  justify-content: space-between; }\n\n.index_container_title_video_call__s9ly9 p {\n  text-align: left;\n  font-size: 25px;\n  padding: 6px;\n  margin: 0; }\n\n.index_container_message__Dd8cc {\n  display: block;\n  width: 100%;\n  padding: 0px 10px 0px 10px;\n  max-height: 500px;\n  min-height: 500px;\n  overflow-y: auto;\n  font-size: 12px; }\n\n.index_container_message_time__0nKIw {\n  display: flex;\n  justify-content: center;\n  width: 100%; }\n\n.index_container_message_text__TobBt {\n  max-width: 50%;\n  min-width: 20%;\n  text-align: center;\n  opacity: .5; }\n\n.index_line_message_time__d3LQp {\n  border-bottom: 1px solid gray;\n  text-align: center;\n  width: 50%;\n  position: relative;\n  top: -7px;\n  opacity: .3; }\n\n.index_container_is_now__HtJ00 {\n  width: 100%;\n  font-size: 20px;\n  position: absolute;\n  display: flex;\n  justify-content: center;\n  z-index: 1; }\n  .index_container_is_now__HtJ00 div {\n    width: 20%;\n    text-align: center;\n    font-family: Tahoma; }\n\n.index_message_user__kUrDi {\n  display: flex;\n  justify-content: flex-end;\n  width: 100%;\n  overflow: hidden;\n  margin-bottom: 10px; }\n\n.index_message_agente__gV1kB {\n  display: flex;\n  justify-content: flex-start;\n  width: 100%;\n  overflow: hidden;\n  margin-bottom: 10px; }\n\n.index_message_user_text__AIn5G {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  background-color: #e4ebf7;\n  padding: 10px;\n  border-radius: 15px 15px 0px 15px;\n  max-width: 400px; }\n\n.index_message_agente_text__mFogq {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  background-color: #f5f5f5;\n  padding: 10px;\n  border-radius: 15px 15px 15px 0px;\n  max-width: 400px; }\n\n.index_message_date__wS32T {\n  text-align: center;\n  padding: 16px 0;\n  font-size: 12px;\n  color: #999; }\n\n.index_container_hora_message__NXB8X {\n  font-size: 10px;\n  float: right;\n  font-style: oblique;\n  margin-top: 4px; }\n\n.index_container_form__QKfAf {\n  display: flex;\n  margin: 20px; }\n\n.index_text_area_input__ZRu1M {\n  max-height: 200px;\n  height: 20px; }\n\n.index_container_form_file__7WhlO {\n  font-size: x-large;\n  margin-right: 10px;\n  cursor: pointer; }\n\n.index_container_file__xJvAS {\n  display: flex;\n  min-width: 380px;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 10px;\n  padding-right: 10px;\n  margin-top: 10px;\n  background-color: #d0d0d0;\n  border-radius: 3px; }\n\n.index_container_download__B1EAW {\n  display: block;\n  width: 100%; }\n\n.index_container_download__B1EAW span {\n  font-size: 12px;\n  margin-left: 10px; }\n\n.index_container_download__B1EAW i {\n  font-size: 20px; }\n\n/*VIDEO CALL*/\n.index_container_video_call__kz9d9 {\n  display: flex;\n  justify-content: space-evenly;\n  padding: 10px; }\n\n@media (max-width: 600px) {\n  .index_message_user_text__AIn5G {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    background-color: #e4ebf7;\n    padding: 10px;\n    border-radius: 15px 15px 0px 15px;\n    max-width: 200px; }\n  .index_message_agente_text__mFogq {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    background-color: #f5f5f5;\n    padding: 10px;\n    border-radius: 15px 15px 15px 0px;\n    max-width: 200px; }\n  .index_container_file__xJvAS {\n    display: flex;\n    padding-top: 10px;\n    padding-bottom: 10px;\n    padding-left: 10px;\n    padding-right: 10px;\n    margin-top: 10px;\n    background-color: #d0d0d0;\n    border-radius: 3px; } }\n\n.index_attachment_container__nHaXZ {\n  background: #DDDDDD;\n  width: 60%;\n  min-width: 60%;\n  height: auto;\n  margin: 10px 20px;\n  padding: 5px;\n  border-radius: 4px;\n  display: flex;\n  justify-content: space-between; }\n\n.index_remove_text_file__jvfxk {\n  color: #333;\n  font-weight: 500;\n  display: table-cell;\n  margin: 0; }\n\n.index_remove_file__AezT- {\n  cursor: pointer;\n  float: right;\n  margin: 5px; }\n\n.index_body__VER-7 {\n  font-family: Lato, sans-serif; }\n\n.index_pannel__pZrYz {\n  background-color: #fff;\n  border-radius: 5px;\n  margin-bottom: 15px !important;\n  padding: 20px 40px; }\n  .index_pannel--shadow__6jaYL {\n    box-shadow: #4a4a4a 0px 0px 5px 0px; }\n\n.index_button__qrvGB {\n  background-color: #495867;\n  font-size: 19px;\n  font-weight: 400;\n  position: relative;\n  width: 220px;\n  text-align: center;\n  height: auto;\n  line-height: 22.8px;\n  min-height: 35px;\n  border-radius: 24px;\n  border: 0;\n  color: white;\n  align-self: center; }\n  .index_button__qrvGB:hover {\n    background-color: #4a4a4a; }\n\na {\n  color: #fff; }\n\np {\n  margin: 0; }\n";
+var css_248z = ".container_header {\n  padding: 10px;\n  border-bottom: 4px solid #ff6200; }\n\n.container_title_video_call {\n  display: flex;\n  justify-content: space-between; }\n\n.container_title_video_call p {\n  text-align: left;\n  font-size: 25px;\n  padding: 6px;\n  margin: 0; }\n\n.container_message {\n  display: block;\n  width: 100%;\n  padding: 0px 10px 0px 10px;\n  max-height: 500px;\n  min-height: 500px;\n  overflow-y: auto;\n  font-size: 12px; }\n\n.container_message_time {\n  display: flex;\n  justify-content: center;\n  width: 100%; }\n\n.container_message_text {\n  max-width: 50%;\n  min-width: 20%;\n  text-align: center;\n  opacity: .5; }\n\n.line_message_time {\n  border-bottom: 1px solid gray;\n  text-align: center;\n  width: 50%;\n  position: relative;\n  top: -7px;\n  opacity: .3; }\n\n.container_is_now {\n  width: 100%;\n  font-size: 20px;\n  position: absolute;\n  display: flex;\n  justify-content: center;\n  z-index: 1; }\n  .container_is_now div {\n    width: 20%;\n    text-align: center;\n    font-family: Tahoma; }\n\n.message_user {\n  display: flex;\n  justify-content: flex-end;\n  width: 100%;\n  overflow: hidden;\n  margin-bottom: 10px; }\n\n.message_agente {\n  display: flex;\n  justify-content: flex-start;\n  width: 100%;\n  overflow: hidden;\n  margin-bottom: 10px; }\n\n.message_user_text {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  background-color: #e4ebf7;\n  padding: 10px;\n  border-radius: 15px 15px 0px 15px;\n  max-width: 400px; }\n\n.message_agente_text {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  background-color: #f5f5f5;\n  padding: 10px;\n  border-radius: 15px 15px 15px 0px;\n  max-width: 400px; }\n\n.message_date {\n  text-align: center;\n  padding: 16px 0;\n  font-size: 12px;\n  color: #999; }\n\n.container_hora_message {\n  font-size: 10px;\n  float: right;\n  font-style: oblique;\n  margin-top: 4px; }\n\n.container_form {\n  display: flex;\n  margin: 20px; }\n\n.text_area_input {\n  max-height: 200px;\n  height: 20px; }\n\n.container_form_file {\n  font-size: x-large;\n  margin-right: 10px;\n  cursor: pointer; }\n\n.container_file {\n  display: flex;\n  min-width: 380px;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 10px;\n  padding-right: 10px;\n  margin-top: 10px;\n  background-color: #d0d0d0;\n  border-radius: 3px; }\n\n.container_download {\n  display: block;\n  width: 100%; }\n\n.container_download span {\n  font-size: 12px;\n  margin-left: 10px; }\n\n.container_download i {\n  font-size: 20px; }\n\n/*VIDEO CALL*/\n.container_video_call {\n  display: flex;\n  justify-content: space-evenly;\n  padding: 10px; }\n\n@media (max-width: 600px) {\n  .message_user_text {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    background-color: #e4ebf7;\n    padding: 10px;\n    border-radius: 15px 15px 0px 15px;\n    max-width: 200px; }\n  .message_agente_text {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    background-color: #f5f5f5;\n    padding: 10px;\n    border-radius: 15px 15px 15px 0px;\n    max-width: 200px; }\n  .container_file {\n    display: flex;\n    padding-top: 10px;\n    padding-bottom: 10px;\n    padding-left: 10px;\n    padding-right: 10px;\n    margin-top: 10px;\n    background-color: #d0d0d0;\n    border-radius: 3px; } }\n\n.attachment_container {\n  background: #DDDDDD;\n  width: 60%;\n  min-width: 60%;\n  height: auto;\n  margin: 10px 20px;\n  padding: 5px;\n  border-radius: 4px;\n  display: flex;\n  justify-content: space-between; }\n\n.remove_text_file {\n  color: #333;\n  font-weight: 500;\n  display: table-cell;\n  margin: 0; }\n\n.remove_file {\n  cursor: pointer;\n  float: right;\n  margin: 5px; }\n\n.body {\n  font-family: Lato, sans-serif; }\n\n.pannel {\n  background-color: #fff;\n  border-radius: 5px;\n  margin-bottom: 15px !important;\n  padding: 20px 40px; }\n  .pannel--shadow {\n    box-shadow: #4a4a4a 0px 0px 5px 0px; }\n\n.button {\n  background-color: #495867;\n  font-size: 19px;\n  font-weight: 400;\n  position: relative;\n  width: 220px;\n  text-align: center;\n  height: auto;\n  line-height: 22.8px;\n  min-height: 35px;\n  border-radius: 24px;\n  border: 0;\n  color: white;\n  align-self: center; }\n  .button:hover {\n    background-color: #4a4a4a; }\n\na {\n  color: #fff; }\n\np {\n  margin: 0; }\n";
 styleInject(css_248z);
 
 var Chat = function Chat(_ref) {
@@ -1587,5 +1620,325 @@ var Chat = function Chat(_ref) {
   }, " Chat As\xEDncrono :).. "))), React.createElement("div", null, React.createElement(ChatMessages, null), React.createElement(ChatForm, null))));
 };
 
-export { Chat };
+var css_248z$1 = ".Portal-header {\n  background: linear-gradient(17.56deg, #ff9401 63.22%, #ff7b01 105.58%, #ff6c01 144.92%);\n  height: 70px;\n  background-position: left;\n  background-repeat: no-repeat;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  font-size: calc(10px + 2vmin);\n  color: #333; }\n\n.logo_background {\n  background: linear-gradient(272deg, #ff6200 0%, #ff861b 95.09%);\n  border-radius: 1653px 0px 0px 1653px;\n  width: 190px;\n  height: 70px;\n  text-align: left;\n  transform: rotate(180deg);\n  margin-left: 0;\n  margin-right: auto;\n  cursor: pointer; }\n\n.fala_logo {\n  transform: rotate(180deg);\n  height: 100%;\n  width: 85%;\n  padding-right: 10px;\n  padding-left: 10px; }\n";
+styleInject(css_248z$1);
+
+var goToPortal = function goToPortal() {
+  window.location.href = '/portal';
+};
+
+var Header = function Header() {
+  return React.createElement("header", {
+    className: "Portal-header"
+  }, React.createElement("div", {
+    onClick: goToPortal,
+    className: 'logo_background'
+  }, React.createElement("img", {
+    className: "fala_logo",
+    src: "https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt9f6f7671ced09c38/6126b34e8e16ab655b346002/hr-1-logo-desktop.svg"
+  })));
+};
+
+var css_248z$2 = "body {\n  height: 100%;\n  background-color: #f5f5f5;\n}\n\n.Orders {\n  margin: 0px;\n}\n\n.title {\n  font-size: 22px;\n  line-height: 27px;\n  font-weight: 700;\n  color: rgb(51, 51, 51);\n}\n\n.subtitle {\n  font-size: 1em;\n  color: rgb(51, 51, 51);\n  margin: 0;\n  margin-right: 10px;\n}\n\n.input-container {\n  display: flex;\n  margin-bottom: 15px;\n}\n\ninput {\n  height: 20px;\n  width: 220px;\n  border: 1px solid #888;\n  font-family: inherit;\n  line-height: inherit;\n  font-size: 1.6rem;\n  background: #fff;\n  outline: none;\n  border-radius: 4px;\n  box-sizing: content-box;\n  padding: 0 10px;\n  font-size: 16px;\n  color: #333;\n  /* text-align: center; */\n}\n\n.orders-pagination{\n  display: flex;\n  justify-content: center;\n  margin-bottom: 15px;\n}\n\n.orders-pagination p{\n  margin: 0px 5px;\n}\n\n.arrow {\n  cursor: pointer;\n}";
+styleInject(css_248z$2);
+
+var URL = 'http://localhost:8000/v1/facl';
+var getOrders = /*#__PURE__*/function () {
+  var _ref = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/runtime_1.mark(function _callee(email, page) {
+    var ordersResponse;
+    return runtime_1.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            if (page === void 0) {
+              page = 1;
+            }
+
+            _context.prev = 1;
+            _context.next = 4;
+            return axios.get(URL + "/orders/?email=" + email + "&page=" + page);
+
+          case 4:
+            ordersResponse = _context.sent;
+            return _context.abrupt("return", ordersResponse.data.data);
+
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](1);
+            console.log(_context.t0);
+            return _context.abrupt("return", null);
+
+          case 12:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[1, 8]]);
+  }));
+
+  return function getOrders(_x, _x2) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var DELIVERY_METHODS = {
+  HOME_DELIVERY: "Entregado el",
+  PICKUP_FROM_STORE: "Retiro en tienda"
+};
+var DELIVERY_STATUS = {
+  DELIVERED: "Compra entregada",
+  IN_PROCESS: "Solicitud recibida",
+  WITH_INVOICE: "Compra confirmada",
+  SHIPMENT_IN_PROCESS: "Compra en camino",
+  CANCELED: "Compra cancelada"
+};
+var getDeliveryMethod = function getDeliveryMethod(method) {
+  return DELIVERY_METHODS[method] || method;
+};
+var getDeliveryStatus = function getDeliveryStatus(status) {
+  return DELIVERY_STATUS[status] || status;
+};
+
+var css_248z$3 = ".card-title-container {\n  display: flex;\n  justify-content: space-between; }\n\n.card-title {\n  font-size: 1.2rem;\n  font-weight: 700;\n  padding-left: 0px;\n  margin: 0;\n  padding: 0;\n  border: 0; }\n\n.order-date {\n  font-size: 0.8rem; }\n\n.product-img {\n  height: 75px; }\n\n.order-card__info {\n  margin: 0; }\n\n.card-content {\n  display: flex;\n  justify-content: space-between; }\n\n.order-card-number {\n  font-size: 14px;\n  font-weight: 400;\n  color: #4a4a4a;\n  text-align: left;\n  margin: 0; }\n\n.order-card-deliveryMethod {\n  font-size: 16px;\n  font-weight: 700;\n  color: #4a4a4a;\n  text-align: left;\n  padding-bottom: 10px;\n  margin: 0; }\n\n.order-card-deliveryStatus {\n  font-size: 14px;\n  font-weight: 400;\n  color: #4a4a4a;\n  text-align: left;\n  padding-bottom: 10px;\n  padding-left: 10px;\n  margin: 0; }\n\n.order-card-status {\n  display: flex; }\n\n.order-card--actions {\n  display: flex;\n  justify-content: space-between;\n  align-items: center; }\n";
+styleInject(css_248z$3);
+
+var OrdersCard = function OrdersCard(customerOrder) {
+  var order = customerOrder.order;
+
+  var viewCase = function viewCase(sellerOrder) {
+    window.location.href = "/cases-chat/user?orderNumber=" + sellerOrder;
+  };
+
+  var formattedDate = order.createdAt.split(" ")[0];
+  return React.createElement(React.Fragment, null, React.createElement("div", {
+    className: "order-card"
+  }, React.createElement("div", {
+    className: "card-title-container"
+  }, React.createElement("p", {
+    className: "card-title"
+  }, "Compra online"), React.createElement("label", {
+    className: "order-date"
+  }, "Fecha de la compra: ", formattedDate)), React.createElement("div", {
+    className: "order-card__detail"
+  }, order.deliveryOrders.map(function (orderDelivery, index) {
+    var _orderDelivery$delive, _orderDelivery$delive2;
+
+    return React.createElement("div", {
+      key: index
+    }, React.createElement("hr", null), React.createElement("div", {
+      className: "card-content"
+    }, React.createElement("div", {
+      className: "order-card--product"
+    }, React.createElement("p", {
+      className: "order-card-number"
+    }, "Pedido N\xBA: ", orderDelivery.reservationNumber), React.createElement("label", {
+      className: "order-card-deliveryMethod"
+    }, getDeliveryMethod(orderDelivery.deliveryMethod), " ", orderDelivery == null ? void 0 : (_orderDelivery$delive = orderDelivery.deliveryInfo) == null ? void 0 : (_orderDelivery$delive2 = _orderDelivery$delive.deliveredDate) == null ? void 0 : _orderDelivery$delive2.split(" ")[0]), React.createElement("div", {
+      className: "order-card-status"
+    }, React.createElement("div", {
+      className: "product_container__img"
+    }, React.createElement("img", {
+      className: "product-img",
+      alt: "",
+      src: orderDelivery.shipments[0].orderLines[0].item.imageUrl
+    })), React.createElement("p", {
+      className: "order-card-deliveryStatus"
+    }, "Estado: ", getDeliveryStatus(orderDelivery.shipments[0].currentStatus)))), React.createElement("div", {
+      className: "order-card--actions"
+    }, React.createElement("button", {
+      className: "button",
+      onClick: function onClick(e) {
+        return viewCase(orderDelivery.reservationNumber);
+      }
+    }, "Abrir conversaci\xF3n"))));
+  }))));
+};
+
+var getStatusMessage = function getStatusMessage(originalStatus) {
+  var description = '';
+
+  switch (originalStatus) {
+    case 'PAYMENT_PENDING':
+      description = 'Pendiente de pago';
+      break;
+
+    case 'IN_PROCESS':
+      description = 'Reservado';
+      break;
+
+    case 'WITH_INVOICE':
+    case 'PAYMENT_CONFIRMED':
+    case 'SHIPMENT_IN_PROCESS':
+    case 'BROKEN':
+      description = 'Pedido en curso';
+      break;
+
+    case 'DELAYED':
+      description = 'Pedido en curso';
+      break;
+
+    case 'DELIVERED':
+      description = 'Pedido finalizado';
+      break;
+
+    case 'READY_TO_PICKUP':
+      description = 'Listo para retiro';
+      break;
+
+    case 'CANCELED':
+      description = 'Pedido cancelado';
+      break;
+
+    case 'EXPIRED':
+      description = 'Pedido expirado';
+      break;
+
+    default:
+      description = originalStatus;
+      break;
+  }
+
+  return description;
+};
+
+var getDeliveryStatus$1 = function getDeliveryStatus(originalStatus) {
+  switch (originalStatus) {
+    case 'PICKUP_FROM_STORE':
+      originalStatus = 'Retiro en tienda';
+      break;
+
+    case 'HOME_DELIVERY':
+      originalStatus = 'Despacho a domicilio';
+      break;
+
+    case 'DELIVERED':
+      originalStatus = 'Despacho a domicilio';
+      break;
+
+    default:
+      originalStatus = 'Sin información';
+      break;
+  }
+
+  return originalStatus;
+};
+
+var formatSellerOrder = function formatSellerOrder(sellerOrder) {
+  sellerOrder.shipments[0].currentStatus = getStatusMessage(sellerOrder.shipments[0].currentStatus);
+  sellerOrder.deliveryMethod = getDeliveryStatus$1(sellerOrder.deliveryMethod);
+};
+
+var formatOrder = function formatOrder(orderData) {
+  for (var _iterator = _createForOfIteratorHelperLoose(orderData.customerOrders), _step; !(_step = _iterator()).done;) {
+    var order = _step.value;
+
+    for (var _iterator2 = _createForOfIteratorHelperLoose(order.deliveryOrders), _step2; !(_step2 = _iterator2()).done;) {
+      var sellerOrder = _step2.value;
+      formatSellerOrder(sellerOrder);
+    }
+  }
+};
+
+var Orders = function Orders() {
+  var _useState = useState({}),
+      ordersData = _useState[0],
+      setOrdersData = _useState[1];
+
+  var _useState2 = useState(''),
+      caseEmailInput = _useState2[0],
+      setCaseEmailInput = _useState2[1];
+
+  var changePageBack = function changePageBack(paginationData, email) {
+    if (paginationData.page - 1 < 1) ; else {
+      var page = paginationData.page - 1;
+      viewOrdersByEmail(email, page);
+    }
+  };
+
+  var changePageUp = function changePageUp(paginationData, email) {
+    if (paginationData.page + 1 > paginationData.totalPages) ; else {
+      var page = paginationData.page + 1;
+      viewOrdersByEmail(email, page);
+    }
+  };
+
+  var viewOrdersByEmail = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/runtime_1.mark(function _callee(email, page) {
+      var response;
+      return runtime_1.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return getOrders(email, page);
+
+            case 2:
+              response = _context.sent;
+
+              if (response) {
+                formatOrder(response);
+                setOrdersData(response);
+              }
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function viewOrdersByEmail(_x, _x2) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  return React.createElement("div", {
+    className: "Orders"
+  }, React.createElement("div", {
+    className: "Orders-body"
+  }, React.createElement("div", {
+    className: "orders-search pannel"
+  }, React.createElement("p", {
+    className: "title"
+  }, "Revisi\xF3n de casos y compras"), React.createElement("div", {
+    className: "input-container"
+  }, React.createElement("p", {
+    className: "subtitle"
+  }, "Ingrese su email:"), React.createElement("input", {
+    className: "search_inputs",
+    key: "email",
+    value: caseEmailInput,
+    type: "text",
+    onInput: function onInput(e) {
+      return setCaseEmailInput(e.currentTarget.value);
+    }
+  })), React.createElement("button", {
+    className: 'button',
+    onClick: function onClick(e) {
+      return viewOrdersByEmail(caseEmailInput);
+    }
+  }, "Ver detalle")), ordersData && ordersData.pagination && ordersData.pagination.totalPages > 1 && React.createElement("div", {
+    className: "orders-pagination"
+  }, React.createElement("div", {
+    className: "before-arrow arrow",
+    onClick: function onClick(e) {
+      return changePageBack(ordersData.pagination, caseEmailInput);
+    }
+  }, '<'), React.createElement("p", null, "P\xE1gina ", ordersData.pagination.page, " de ", ordersData.pagination.totalPages), React.createElement("div", {
+    className: "next-arrow arrow",
+    onClick: function onClick(e) {
+      return changePageUp(ordersData.pagination, caseEmailInput);
+    }
+  }, '>')), ordersData && ordersData.customerOrders && ordersData.customerOrders.map(function (customerOrder, index) {
+    return React.createElement("div", {
+      key: index,
+      className: 'orders-container pannel'
+    }, React.createElement(OrdersCard, {
+      order: customerOrder
+    }));
+  })));
+};
+
+export { Chat, Header, Orders };
 //# sourceMappingURL=jnra-product-card.esm.js.map
